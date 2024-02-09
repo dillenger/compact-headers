@@ -102,7 +102,7 @@ function install(window) {
   compactHeadersSeparator4.id = "compactHeadersSeparator4";
 
   let expandedfromRow = document.getElementById("expandedfromRow");
-  expandedfromRow.setAttribute("style", "align-items: center; margin-block: -1em; padding-block: 1em; margin-inline: -2px auto; overflow: hidden; min-width: min-content;");
+  expandedfromRow.setAttribute("style", "align-items: center; margin-block: -1em; padding-block: 1em; margin-inline: -2px auto; overflow: hidden; min-width: max-content;");
   expandedfromRow.insertAdjacentElement("afterbegin", compactHeadersBox);
   let expandedfromBox = document.getElementById("expandedfromBox");
   expandedfromBox.setAttribute("style", "margin-block: 1px; overflow: hidden; min-width: 250%; margin-inline-end: 1.6em;");
@@ -188,6 +188,55 @@ function install(window) {
   if (msgHeaderView.lastChild.id == "compactHeadersPopup") {
   } else {
     msgHeaderView.append(compactHeadersPopup);
+  }
+
+  function patchRecipientClass() {
+    window.customElements.whenDefined("header-recipient").then(classHeaderRecipient => {
+      if (!classHeaderRecipient.prototype.originalUpdateRecipient) {
+        classHeaderRecipient.prototype.originalUpdateRecipient = classHeaderRecipient.prototype.updateRecipient;
+        classHeaderRecipient.prototype.updateRecipient = function() {
+          this.originalUpdateRecipient();
+
+          if (this.dataset.headerName == "to" || this.dataset.headerName == "cc") {
+            this.nameLine.textContent = this.displayName;
+            this.addressLine.textContent = this.emailAddress;
+            if (this.displayName) {
+              this.classList.add("has-display-name");
+            } else {
+              this.classList.remove("has-display-name");
+            }
+          }
+        }
+        // Call updateRecipient for existing recipients before patched
+        for (let recipient of expandedtoBox.querySelectorAll('li[is="header-recipient"]')) {
+          recipient.updateRecipient();
+        }
+        for (let recipient of expandedccBox.querySelectorAll('li[is="header-recipient"]')) {
+          recipient.updateRecipient();
+        }
+      }
+    });
+  }
+
+  function createStyle() {
+    if (!document.getElementById("compactHeadersStyle")) {
+      let style = document.createElement('style');
+      style.id = "compactHeadersStyle";
+      style.textContent = `
+#messageHeader[compact="compact"] :is(#expandedtoLabel, #toHeading, #expandedccLabel, #ccHeading) {
+  align-self: center;
+}
+
+#messageHeader[compact="compact"] .has-display-name .recipient-single-line {
+  display: none;
+}
+
+#messageHeader[compact="compact"] .has-display-name .recipient-multi-line {
+  display: inline-flex;
+}
+`;
+      document.head.append(style);
+    }
   }
 
   function singleLine() {
@@ -292,18 +341,21 @@ function install(window) {
 
     headerViewToolbox.style.flex = "auto";
     headerViewToolbox.style.alignSelf = "auto";
+
+    let senderBoxHeight = expandedfromBox.offsetHeight;
     expandedfromRow.insertAdjacentElement("beforebegin", expandedcontentBaseRow);
     expandedcontentBaseRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 2; flex: inherit;");
-    expandedcontentBaseBox.setAttribute("style", "max-block-size: 1.5em; min-height:18px; overflow: hidden; min-width: 250%; max-height: 1.5em; margin-inline-end: -99em;");
+    expandedcontentBaseBox.setAttribute("style", `max-block-size: ${senderBoxHeight}px; min-height:18px; overflow: hidden; min-width: 250%; max-height: ${senderBoxHeight}px; margin-inline-end: -99em;`);
     expandedfromRow.insertAdjacentElement("beforebegin", expandedccRow);
     expandedccRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 2; flex: inherit;");
-    expandedccBox.setAttribute("style", "max-block-size: 1.5em; min-height:20px; overflow: hidden; min-width: 250%; max-height: 1.5em; margin-inline-end: 1.6em;");
+    expandedccBox.setAttribute("style", `max-block-size: ${senderBoxHeight}px; min-height:20px; overflow: hidden; min-width: 250%; max-height: ${senderBoxHeight}px; margin-inline-end: 1.6em;`);
     expandedfromRow.insertAdjacentElement("beforebegin", expandedtoRow);
     expandedtoRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 1; flex: inherit;");
-    expandedtoBox.setAttribute("style", "max-block-size: 1.5em; min-height:20px; overflow: hidden; min-width: 250%; max-height: 1.5em; margin-inline-end: 1.6em;");
+    expandedtoBox.setAttribute("style", `max-block-size: ${senderBoxHeight}px; min-height:20px; overflow: hidden; min-width: 250%; max-height: ${senderBoxHeight}px; margin-inline-end: 1.6em;`);
+
     if ((messageHeader.getAttribute("movecontentbaseheader") != "movecontentbaseheader") || (messageHeader.getAttribute("singleline") == "singleline")) {
       expandedcontentBaseRow.style.display = "none";
     }
@@ -497,6 +549,8 @@ function install(window) {
     checkHeaders();
   }
 
+  patchRecipientClass();
+  createStyle();
   checkLines();
   markToolbar();
   checkToCcHeaders();
@@ -617,6 +671,16 @@ function uninstall(window) {
   let expandedtagsRow = document.getElementById("expandedtagsRow");
   if (expandedtagsRow) expandedtagsRow.insertAdjacentElement("afterbegin", expandedtagsBox);
   if (expandedtagsBox) expandedtagsBox.style.marginLeft = "0px";
+
+  let compactHeadersStyle = document.getElementById("compactHeadersStyle");
+  if (compactHeadersStyle) document.head.removeChild(compactHeadersStyle);
+
+  window.customElements.whenDefined("header-recipient").then(classHeaderRecipient => {
+    if (classHeaderRecipient.prototype.originalUpdateRecipient) {
+      classHeaderRecipient.prototype.updateRecipient = classHeaderRecipient.prototype.originalUpdateRecipient;
+      delete classHeaderRecipient.prototype.originalUpdateRecipient;
+    }
+  });
 }
 
 var compactHeadersApi = class extends ExtensionCommon.ExtensionAPI {
