@@ -8,7 +8,7 @@ function getMessageWindow(nativeTab) {
   if (nativeTab instanceof Ci.nsIDOMWindow) {
     return nativeTab.messageBrowser.contentWindow
   } else if (nativeTab.mode && nativeTab.mode.name == "mail3PaneTab") {
-    return nativeTab.chromeBrowser.contentWindow.messageBrowser.contentWindow
+    return nativeTab.chromeBrowser.contentWindow.messageBrowser && nativeTab.chromeBrowser.contentWindow.messageBrowser.contentWindow;
   } else if (nativeTab.mode && nativeTab.mode.name == "mailMessageTab") {
     return nativeTab.chromeBrowser.contentWindow;
   } else {
