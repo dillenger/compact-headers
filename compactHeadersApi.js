@@ -223,15 +223,15 @@ function install(window) {
       let style = document.createElement('style');
       style.id = "compactHeadersStyle";
       style.textContent = `
-#messageHeader[compact="compact"] :is(#expandedtoLabel, #toHeading, #expandedccLabel, #ccHeading) {
+#messageHeader[compact="compact"].message-header-show-sender-full-address :is(#expandedtoLabel, #toHeading, #expandedccLabel, #ccHeading) {
   align-self: center;
 }
 
-#messageHeader[compact="compact"] .has-display-name .recipient-single-line {
+#messageHeader[compact="compact"].message-header-show-sender-full-address .has-display-name .recipient-single-line {
   display: none;
 }
 
-#messageHeader[compact="compact"] .has-display-name .recipient-multi-line {
+#messageHeader[compact="compact"].message-header-show-sender-full-address .has-display-name .recipient-multi-line {
   display: inline-flex;
 }
 `;
