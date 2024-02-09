@@ -223,6 +223,18 @@ function install(window) {
       let style = document.createElement('style');
       style.id = "compactHeadersStyle";
       style.textContent = `
+#messageHeader[compact="compact"] :is(#headerSenderToolbarContainer, #expandedtoRow, #expandedccRow) {
+  min-width: 0;
+}
+
+#messageHeader[compact="compact"] :is(#expandedtoRow, #expandedccRow) .recipients-list {
+  flex-wrap: nowrap;
+}
+
+#messageHeader[compact="compact"] :is(#expandedtoRow, #expandedccRow) .recipients-list .header-recipient {
+  min-width: max-content;
+}
+
 #messageHeader[compact="compact"].message-header-show-sender-full-address :is(#expandedtoLabel, #toHeading, #expandedccLabel, #ccHeading) {
   align-self: center;
 }
@@ -342,19 +354,18 @@ function install(window) {
     headerViewToolbox.style.flex = "auto";
     headerViewToolbox.style.alignSelf = "auto";
 
-    let senderBoxHeight = expandedfromBox.offsetHeight;
     expandedfromRow.insertAdjacentElement("beforebegin", expandedcontentBaseRow);
     expandedcontentBaseRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 2; flex: inherit;");
-    expandedcontentBaseBox.setAttribute("style", `max-block-size: ${senderBoxHeight}px; min-height:18px; overflow: hidden; min-width: 250%; max-height: ${senderBoxHeight}px; margin-inline-end: -99em;`);
+    expandedcontentBaseBox.setAttribute("style", `min-height:18px; overflow: hidden; min-width: 250%; margin-inline-end: -99em;`);
     expandedfromRow.insertAdjacentElement("beforebegin", expandedccRow);
     expandedccRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 2; flex: inherit;");
-    expandedccBox.setAttribute("style", `max-block-size: ${senderBoxHeight}px; min-height:20px; overflow: hidden; min-width: 250%; max-height: ${senderBoxHeight}px; margin-inline-end: 1.6em;`);
+    expandedccBox.setAttribute("style", `min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: 1.6em;`);
     expandedfromRow.insertAdjacentElement("beforebegin", expandedtoRow);
     expandedtoRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 1; flex: inherit;");
-    expandedtoBox.setAttribute("style", `max-block-size: ${senderBoxHeight}px; min-height:20px; overflow: hidden; min-width: 250%; max-height: ${senderBoxHeight}px; margin-inline-end: 1.6em;`);
+    expandedtoBox.setAttribute("style", `min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: 1.6em;`);
 
     if ((messageHeader.getAttribute("movecontentbaseheader") != "movecontentbaseheader") || (messageHeader.getAttribute("singleline") == "singleline")) {
       expandedcontentBaseRow.style.display = "none";
