@@ -2,9 +2,9 @@ Changelog for Compact Headers
 
 5.4
 Added option to show full Subject header in double line mode.
-Readded forced reloading to fix the "More" buttons.
-Also show To and Cc's full address when "Always show sender's full address" is enabled.
-Removed some obsolete styles.
+Show To and Cc's addresses below name when always show full address is enabled.
+Thanks to Vigilans for these 2 patches.
+Re-enabled forced reloading to fix the "More" buttons for multiple recipients.
 
 5.3
 Fixed Message Security (S/MIME, OpenPGP) button border.
