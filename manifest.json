@@ -3,7 +3,7 @@
   "name": "Compact Headers",
   "description": "__MSG_extDesc__",
   "homepage_url": "https://addons.thunderbird.net/en-US/thunderbird/addon/compact-headers/",
-  "version": "5.6",
+  "version": "5.7",
   "author": "Dillinger",
   "default_locale": "en-US",
   "experiment_apis": {
