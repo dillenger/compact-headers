@@ -1,5 +1,9 @@
 Changelog for Compact Headers
 
+5.7
+Fixed encryption button wrapping.
+Set maximum version to Thunderbird 141.*.
+
 5.6
 ESMified the add-on.
 Set minimum version to Thunderbird 115.0.
