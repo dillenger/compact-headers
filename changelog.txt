@@ -1,5 +1,9 @@
 Changelog for Compact Headers
 
+5.8
+Fixed long subjects sometimes appearing on top of sender and recipient in expanded headers.
+Set maximum version to Thunderbird 145.*.
+
 5.7
 Fixed encryption button wrapping.
 Set maximum version to Thunderbird 141.*.

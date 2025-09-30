@@ -164,7 +164,6 @@ function install(window) {
   let headerSenderToolbarContainer = document.getElementById("headerSenderToolbarContainer");
   if (headerSenderToolbarContainer) headerSenderToolbarContainer.style.display = "flex";
   if (headerSenderToolbarContainer) headerSenderToolbarContainer.style.flexDirection = "row-reverse";
-  if (headerSenderToolbarContainer) headerSenderToolbarContainer.style.minHeight = "var(--recipient-avatar-size)";
   let headerSubjectSecurityContainer = document.getElementById("headerSubjectSecurityContainer");
 
   let headerHideLabels = document.getElementById("headerHideLabels");
