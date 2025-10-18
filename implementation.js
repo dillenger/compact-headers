@@ -114,7 +114,6 @@ function install(window) {
   expandedfromRow.setAttribute("style", "align-items: center; margin-block: -1em; padding-block: 1em; margin-inline: -2px auto; overflow: hidden; min-width: min-content;");
   expandedfromRow.insertAdjacentElement("afterbegin", compactHeadersBox);
   let expandedfromBox = document.getElementById("expandedfromBox");
-  expandedfromBox.setAttribute("style", "margin-block: 1px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px;");
   expandedfromBox.firstChild.nextSibling.style.flexWrap = "nowrap";
   expandedfromBox.firstChild.nextSibling.style.minWidth = "inherit";
   let expandedfromLabel = document.getElementById("expandedfromLabel");
@@ -341,13 +340,15 @@ function install(window) {
     for (i = 1; i < messageHeader.childElementCount; i++) {
       messageHeader.children[i].setAttribute("persist", "style");
       messageHeader.children[i].setAttribute("style", "display: none;");
-      if (messageHeader.getAttribute("singleline") != "singleline") headerSubjectSecurityContainer.setAttribute("style", "height: unset;");
+      if (messageHeader.getAttribute("singleline") != "singleline") headerSubjectSecurityContainer.setAttribute("style", "height: unset; z-index: 3;");
     }
     if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 1; max-width: fit-content;");
     if ((messageHeader.getAttribute("showfullsubjectheader") == "showfullsubjectheader") && (messageHeader.getAttribute("singleline") != "singleline"))
       expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 3; max-width: fit-content;");
     if (messageHeader.getAttribute("singleline") == "singleline") singleLine();
     else doubleLine();
+
+    expandedfromBox.setAttribute("style", "margin-block: 1px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: auto;");
 
     headerViewToolbox.style.flex = "auto";
     headerViewToolbox.style.alignSelf = "auto";
@@ -395,6 +396,8 @@ function install(window) {
     if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow-x: hidden; -webkit-line-clamp: 3; max-width: fit-content;");
     doubleLine();
 
+    expandedfromBox.setAttribute("style", "margin-block: 1px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: 3;");
+
     headerSubjectSecurityContainer.insertAdjacentElement("afterend", expandedcontentBaseRow);
     expandedcontentBaseRow.removeAttribute("style");
     expandedcontentBaseBox.removeAttribute("style");
@@ -434,7 +437,7 @@ function install(window) {
   }
 
   function showToolbar() {
-    headerViewToolbar.setAttribute("style", "margin: -4px -1em -3px -2em; padding: 7px 1em 8px 2.2em; position: relative; z-index: 3;\
+    headerViewToolbar.setAttribute("style", "margin: -6px -1em -5px -2em; padding: 9px 1em 10px 2.2em; position: relative; z-index: 3;\
       background: linear-gradient(to right,transparent,buttonface 2em) !important; min-width: max-content; min-height: 1.8em;");
   }
 
