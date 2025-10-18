@@ -1,5 +1,9 @@
 Changelog for Compact Headers
 
+5.9
+Improved appeareance of email addresses.
+Set maximum version to Thunderbird 146.*.
+
 5.8
 Fixed long subjects sometimes appearing on top of sender and recipient in expanded headers.
 Set maximum version to Thunderbird 145.*.

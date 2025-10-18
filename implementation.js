@@ -348,7 +348,7 @@ function install(window) {
     if (messageHeader.getAttribute("singleline") == "singleline") singleLine();
     else doubleLine();
 
-    expandedfromBox.setAttribute("style", "margin-block: 1px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: auto;");
+    expandedfromBox.setAttribute("style", "margin-block: 0px 2px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: auto;");
 
     headerViewToolbox.style.flex = "auto";
     headerViewToolbox.style.alignSelf = "auto";
@@ -396,7 +396,7 @@ function install(window) {
     if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow-x: hidden; -webkit-line-clamp: 3; max-width: fit-content;");
     doubleLine();
 
-    expandedfromBox.setAttribute("style", "margin-block: 1px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: 3;");
+    expandedfromBox.setAttribute("style", "margin-block: 0px 2px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: 3;");
 
     headerSubjectSecurityContainer.insertAdjacentElement("afterend", expandedcontentBaseRow);
     expandedcontentBaseRow.removeAttribute("style");
