@@ -137,7 +137,7 @@ function install(window) {
   let expandedcontentBaseLabel = document.getElementById("expandedcontent-baseLabel");
 
   let expandedsubjectRow = document.getElementById("expandedsubjectRow");
-  if (expandedsubjectRow) expandedsubjectRow.setAttribute("style", "overflow: hidden; margin-block: -1px 0px; z-index: 2;");
+  if (expandedsubjectRow) expandedsubjectRow.setAttribute("style", "overflow: hidden; margin-block: -1px; z-index: 2;");
 
   let expandedsubjectBox = document.getElementById("expandedsubjectBox");
   if (expandedsubjectBox) expandedsubjectBox.addEventListener("contextmenu", stopContext, true);
@@ -342,13 +342,13 @@ function install(window) {
       messageHeader.children[i].setAttribute("style", "display: none;");
       if (messageHeader.getAttribute("singleline") != "singleline") headerSubjectSecurityContainer.setAttribute("style", "height: unset; z-index: 3;");
     }
-    if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 1; max-width: fit-content;");
+    if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 1; min-width: 8em; max-width: fit-content; word-break: break-all;");
     if ((messageHeader.getAttribute("showfullsubjectheader") == "showfullsubjectheader") && (messageHeader.getAttribute("singleline") != "singleline"))
-      expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 3; max-width: fit-content;");
+      expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
     if (messageHeader.getAttribute("singleline") == "singleline") singleLine();
     else doubleLine();
 
-    expandedfromBox.setAttribute("style", "margin-block: 0px 2px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: auto;");
+    expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 250%; margin-inline-end: auto; padding-inline-start: 2px; z-index: auto;");
 
     headerViewToolbox.style.flex = "auto";
     headerViewToolbox.style.alignSelf = "auto";
@@ -360,11 +360,11 @@ function install(window) {
     expandedfromRow.insertAdjacentElement("beforebegin", expandedccRow);
     expandedccRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 2; flex: inherit;");
-    expandedccBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: 1.6em;");
+    expandedccBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: auto;");
     expandedfromRow.insertAdjacentElement("beforebegin", expandedtoRow);
     expandedtoRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 1; flex: inherit;");
-    expandedtoBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: 1.6em;");
+    expandedtoBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: auto;");
 
     if ((messageHeader.getAttribute("movecontentbaseheader") != "movecontentbaseheader") || (messageHeader.getAttribute("singleline") == "singleline")) {
       expandedcontentBaseRow.style.display = "none";
@@ -391,12 +391,12 @@ function install(window) {
     for (i = 1; i < messageHeader.childElementCount; i++) {
       messageHeader.children[i].setAttribute("persist", "style");
       messageHeader.children[i].removeAttribute("style");
-      headerSubjectSecurityContainer.setAttribute("style", "height: unset;");
+      headerSubjectSecurityContainer.setAttribute("style", "height: unset; z-index: 3;");
     }
-    if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow-x: hidden; -webkit-line-clamp: 3; max-width: fit-content;");
+    if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow-x: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
     doubleLine();
 
-    expandedfromBox.setAttribute("style", "margin-block: 0px 2px; overflow: hidden; min-width: 250%; margin-inline: -2px 1.6em; padding-inline-start: 2px; z-index: 3;");
+    expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 250%; margin-inline-end: auto; padding-inline-start: 2px; z-index: 3;");
 
     headerSubjectSecurityContainer.insertAdjacentElement("afterend", expandedcontentBaseRow);
     expandedcontentBaseRow.removeAttribute("style");
@@ -540,17 +540,15 @@ function install(window) {
       dateLabel.style.marginLeft = "0px";
       expandedtagsBox.style.marginLeft = "auto";
       expandedtagsBox.style.paddingLeft = "8px";
-      expandedtagsBox.style.marginBlock = "-3px -1px";
-      expandedsubjectBox.style.flexBasis = "33%";
+      expandedtagsBox.style.minWidth = "fit-content";
     } else if ((messageHeader.getAttribute("compact") != "compact") ||
       (messageHeader.getAttribute("singleline") == "singleline") ||
       (messageHeader.getAttribute("movetags") != "movetags")) {
       expandedtagsRow.insertAdjacentElement("beforeend", expandedtagsBox);
       dateLabel.style.marginLeft = "auto";
-      expandedtagsBox.style.marginLeft = "2px";
+      expandedtagsBox.style.marginLeft = "unset";
       expandedtagsBox.style.paddingLeft = "0px";
-      expandedtagsBox.style.marginBlock = "unset";
-      expandedsubjectBox.style.flexBasis = "unset";
+      expandedtagsBox.style.minWidth = "unset";
     }
   }
 
@@ -701,8 +699,7 @@ function uninstall(window) {
   let expandedtagsBox = document.getElementById("expandedtagsBox");
   let expandedtagsRow = document.getElementById("expandedtagsRow");
   if (expandedtagsRow) expandedtagsRow.insertAdjacentElement("afterbegin", expandedtagsBox);
-  if (expandedtagsBox) expandedtagsBox.style.marginLeft = "0px";
-  if (expandedtagsBox) expandedtagsBox.style.paddingLeft = "0px";
+  if (expandedtagsBox) expandedtagsBox.removeAttribute("style");
 
   let compactHeadersStyle = document.getElementById("compactHeadersStyle");
   if (compactHeadersStyle) document.head.removeChild(compactHeadersStyle);

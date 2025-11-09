@@ -1,7 +1,7 @@
 Changelog for Compact Headers
 
 5.9
-Improved appeareance of email addresses.
+Improved appeareance of email addresses and message tags.
 Set maximum version to Thunderbird 146.*.
 
 5.8
