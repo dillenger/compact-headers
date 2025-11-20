@@ -23,7 +23,7 @@
     "gecko": {
       "id": "compactHeaders@dillinger",
       "strict_min_version": "115.0",
-      "strict_max_version": "146.*"
+      "strict_max_version": "147.*"
     }
   },
   "icons": {
