@@ -1,5 +1,9 @@
 Changelog for Compact Headers
 
+5.10
+Added shortcut key [Alt-K] for German.
+Set maximum version to Thunderbird 149.*.
+
 5.9
 Improved appeareance of email addresses and message tags.
 Set maximum version to Thunderbird 146.*.
