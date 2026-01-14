@@ -96,7 +96,11 @@ function install(window) {
   compactHeadersBox.append(compactHeadersButton);
 
   let compactHeadersLocale = window.navigator.language;
-  if (compactHeadersLocale != "de") compactHeadersButton.setAttribute("accesskey", "D");
+  if (compactHeadersLocale != "de") {
+	  compactHeadersButton.setAttribute("accesskey", "D")
+  } else {
+	  compactHeadersButton.setAttribute("accesskey", "K");
+  }
   compactHeadersButton.setAttribute("style", "background: transparent; margin: 0px -2px 0px 2px;\
     -moz-user-focus: ignore; border: 4px solid transparent; min-height: 0px; min-width: 0px;\
     padding: 0px !important; box-shadow: none; -moz-appearance: none;  fill: currentColor;");
