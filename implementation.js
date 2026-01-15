@@ -94,16 +94,13 @@ function install(window) {
   compactHeadersButton.id = "compactHeadersButton";
   compactHeadersButton.addEventListener("command", () => toggleHeaders());
   compactHeadersBox.append(compactHeadersButton);
-
-  let compactHeadersLocale = window.navigator.language;
-  if (compactHeadersLocale != "de") {
-	  compactHeadersButton.setAttribute("accesskey", "D")
-  } else {
-	  compactHeadersButton.setAttribute("accesskey", "K");
-  }
   compactHeadersButton.setAttribute("style", "background: transparent; margin: 0px -2px 0px 2px;\
     -moz-user-focus: ignore; border: 4px solid transparent; min-height: 0px; min-width: 0px;\
     padding: 0px !important; box-shadow: none; -moz-appearance: none;  fill: currentColor;");
+
+  let compactHeadersLocale = window.navigator.language;
+  if (compactHeadersLocale == "de") compactHeadersButton.setAttribute("accesskey", "K");
+  else compactHeadersButton.setAttribute("accesskey", "D");
 
   let compactHeadersSeparator = document.createXULElement("menuseparator");
   compactHeadersSeparator.id = "compactHeadersSeparator";
