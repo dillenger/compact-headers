@@ -349,7 +349,7 @@ function install(window) {
     if (messageHeader.getAttribute("singleline") == "singleline") singleLine();
     else doubleLine();
 
-    expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 250%; margin-inline-end: auto; padding-inline-start: 2px; z-index: auto;");
+    expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 333%; margin-inline-end: auto; padding-inline-start: 2px; z-index: auto;");
 
     headerViewToolbox.style.flex = "auto";
     headerViewToolbox.style.alignSelf = "auto";
@@ -357,15 +357,15 @@ function install(window) {
     expandedfromRow.insertAdjacentElement("beforebegin", expandedcontentBaseRow);
     expandedcontentBaseRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 2; flex: inherit;");
-    expandedcontentBaseBox.setAttribute("style", "min-height:18px; overflow: hidden; min-width: 250%; margin-inline-end: -99em;");
+    expandedcontentBaseBox.setAttribute("style", "min-height:18px; overflow: hidden; min-width: 333%; margin-inline-end: -99em;");
     expandedfromRow.insertAdjacentElement("beforebegin", expandedccRow);
     expandedccRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 2; flex: inherit;");
-    expandedccBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: auto;");
+    expandedccBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 333%; margin-inline-end: auto;");
     expandedfromRow.insertAdjacentElement("beforebegin", expandedtoRow);
     expandedtoRow.setAttribute("style", "background: linear-gradient(to right,transparent,buttonface 2em) !important;\
       margin-block: -1em; padding-block: 1em; margin-inline-start: -2em; padding-inline-start: 2.4em; z-index: 1; flex: inherit;");
-    expandedtoBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 250%; margin-inline-end: auto;");
+    expandedtoBox.setAttribute("style", "min-height:20px; overflow: hidden; min-width: 333%; margin-inline-end: auto;");
 
     if ((messageHeader.getAttribute("movecontentbaseheader") != "movecontentbaseheader") || (messageHeader.getAttribute("singleline") == "singleline")) {
       expandedcontentBaseRow.style.display = "none";
@@ -397,7 +397,7 @@ function install(window) {
     if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow-x: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
     doubleLine();
 
-    expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 250%; margin-inline-end: auto; padding-inline-start: 2px; z-index: 3;");
+    expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 333%; margin-inline-end: auto; padding-inline-start: 2px; z-index: 3;");
 
     headerSubjectSecurityContainer.insertAdjacentElement("afterend", expandedcontentBaseRow);
     expandedcontentBaseRow.removeAttribute("style");
