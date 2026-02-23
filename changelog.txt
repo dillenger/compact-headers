@@ -1,5 +1,8 @@
 Changelog for Compact Headers
 
+5.11
+Fixed unchecked checkboxes appearing checked in Thunderbird 149.*.
+
 5.10
 Added shortcut key [Alt-K] for German locale, thanks to TomK32.
 Fixed "More" buttons for multiple recipients appearing too soon.

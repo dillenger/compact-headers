@@ -292,7 +292,7 @@ function install(window) {
       compactHeadersSingleLine.setAttribute("checked", true);
       singleLine();
     } else {
-      compactHeadersSingleLine.setAttribute("checked", false);
+      compactHeadersSingleLine.removeAttribute("checked");
       doubleLine();
     }
   }
@@ -310,7 +310,7 @@ function install(window) {
     if (messageHeader.getAttribute("hidetoolbar") == "hidetoolbar") {
       compactHeadersHideToolbar.setAttribute("checked", true);
     } else {
-      compactHeadersHideToolbar.setAttribute("checked", false);
+      compactHeadersHideToolbar.removeAttribute("checked");
     }
   }
 
@@ -491,27 +491,27 @@ function install(window) {
     if (messageHeader.getAttribute("movetoheader") == "movetoheader") {
       compactHeadersMoveToHeader.setAttribute("checked", true);
     } else {
-      compactHeadersMoveToHeader.setAttribute("checked", false);
+      compactHeadersMoveToHeader.removeAttribute("checked");
     }
     if (messageHeader.getAttribute("moveccheader") == "moveccheader") {
       compactHeadersMoveCcHeader.setAttribute("checked", true);
     } else {
-      compactHeadersMoveCcHeader.setAttribute("checked", false);
+      compactHeadersMoveCcHeader.removeAttribute("checked");
     }
     if (messageHeader.getAttribute("movecontentbaseheader") == "movecontentbaseheader") {
       compactHeadersMoveContentBaseheader.setAttribute("checked", true);
     } else {
-      compactHeadersMoveContentBaseheader.setAttribute("checked", false);
+      compactHeadersMoveContentBaseheader.removeAttribute("checked");
     }
     if (messageHeader.getAttribute("showfullsubjectheader") == "showfullsubjectheader") {
       compactHeadersShowFullSubjectHeader.setAttribute("checked", true);
     } else {
-      compactHeadersShowFullSubjectHeader.setAttribute("checked", false);
+      compactHeadersShowFullSubjectHeader.removeAttribute("checked");
     }
     if (messageHeader.getAttribute("movetags") == "movetags") {
       compactHeadersmovetags.setAttribute("checked", true);
     } else {
-      compactHeadersmovetags.setAttribute("checked", false);
+      compactHeadersmovetags.removeAttribute("checked");
     }
   }
 
