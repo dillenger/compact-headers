@@ -1,5 +1,12 @@
 Changelog for Compact Headers
 
+5.13
+Improved alignment of tags, labels and buttons for messages with long subject lines.
+
+5.12
+Realigned tags, date label, crypto button and dark mode button.
+Set maximum version to Thunderbird 151.*.
+
 5.11
 Fixed unchecked checkboxes appearing checked in Thunderbird 149.*.
 

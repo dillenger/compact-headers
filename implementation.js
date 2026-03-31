@@ -25,6 +25,7 @@ function install(window) {
   let messageHeader = document.getElementById("messageHeader");
   messageHeader.style.paddingTop = "3px";
   messageHeader.style.paddingRight = "3px";
+  messageHeader.style.maxBlockSize = "15em";
   let messagepanebox = document.getElementById("messagepanebox");
 
   let headerViewToolbox = document.getElementById("header-view-toolbox");
@@ -138,7 +139,7 @@ function install(window) {
   let expandedcontentBaseLabel = document.getElementById("expandedcontent-baseLabel");
 
   let expandedsubjectRow = document.getElementById("expandedsubjectRow");
-  if (expandedsubjectRow) expandedsubjectRow.setAttribute("style", "overflow: hidden; margin-block: -1px; z-index: 2;");
+  if (expandedsubjectRow) expandedsubjectRow.setAttribute("style", "align-items: baseline; padding-top: 1px; overflow: hidden; z-index: 2;");
 
   let expandedsubjectBox = document.getElementById("expandedsubjectBox");
   if (expandedsubjectBox) expandedsubjectBox.addEventListener("contextmenu", stopContext, true);
@@ -148,15 +149,18 @@ function install(window) {
   if (expandedsubjectLabel) expandedsubjectLabel.style.marginBlock = "auto";
 
   let dateLabel = document.getElementById("dateLabel");
-  if (dateLabel) dateLabel.setAttribute("style", "margin: auto 6px auto auto; min-width: fit-content; padding-inline-start: 1em;");
+  if (dateLabel) dateLabel.setAttribute("style", "min-width: fit-content; padding-inline-start: 10px;");
   if (dateLabel) dateLabel.addEventListener("contextmenu", stopContext, true);
   let dateLabelSubject = document.getElementById("dateLabelSubject");
 
   let expandedtagsBox = document.getElementById("expandedtagsBox");
   let expandedtagsRow = document.getElementById("expandedtagsRow");
 
-  let encryptionTechBtn = document.getElementById("encryptionTechBtn");
-  if (encryptionTechBtn) encryptionTechBtn.setAttribute("style", "margin-block: -4px; z-index: 3; padding-top: 0px !important; min-width: fit-content");
+  let expandedButtonsBox = document.getElementById("expandedButtonsBox");
+  if (expandedButtonsBox) expandedButtonsBox.setAttribute("style", "margin-block: 2px -2px;");
+
+  let darkReaderToggle = document.getElementById("darkReaderToggle");
+  if (darkReaderToggle) darkReaderToggle.setAttribute("style", "margin-block-start: 3px;");
 
   let newsgroupsHeading = document.getElementById("newsgroupsHeading");
   if (newsgroupsHeading) newsgroupsHeading.setAttribute("style", "margin-block: auto;");
@@ -343,9 +347,9 @@ function install(window) {
       messageHeader.children[i].setAttribute("style", "display: none;");
       if (messageHeader.getAttribute("singleline") != "singleline") headerSubjectSecurityContainer.setAttribute("style", "height: unset; z-index: 3;");
     }
-    if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 1; min-width: 8em; max-width: fit-content; word-break: break-all;");
+    expandedsubjectBox.setAttribute("style", "margin-top: 1px; overflow: hidden; -webkit-line-clamp: 1; min-width: 8em; max-width: fit-content; word-break: break-all;");
     if ((messageHeader.getAttribute("showfullsubjectheader") == "showfullsubjectheader") && (messageHeader.getAttribute("singleline") != "singleline"))
-      expandedsubjectBox.setAttribute("style", "overflow: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
+      expandedsubjectBox.setAttribute("style", "margin-top: 1px; overflow: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
     if (messageHeader.getAttribute("singleline") == "singleline") singleLine();
     else doubleLine();
 
@@ -394,7 +398,7 @@ function install(window) {
       messageHeader.children[i].removeAttribute("style");
       headerSubjectSecurityContainer.setAttribute("style", "height: unset; z-index: 3;");
     }
-    if (expandedsubjectBox) expandedsubjectBox.setAttribute("style", "overflow-x: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
+    expandedsubjectBox.setAttribute("style", "margin-top: 1px; overflow-x: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
     doubleLine();
 
     expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 333%; margin-inline-end: auto; padding-inline-start: 2px; z-index: 3;");
@@ -702,8 +706,11 @@ function uninstall(window) {
   if (expandedtagsRow) expandedtagsRow.insertAdjacentElement("afterbegin", expandedtagsBox);
   if (expandedtagsBox) expandedtagsBox.removeAttribute("style");
 
-  let compactHeadersStyle = document.getElementById("compactHeadersStyle");
-  if (compactHeadersStyle) document.head.removeChild(compactHeadersStyle);
+  let expandedButtonsBox = document.getElementById("expandedButtonsBox");
+  if (expandedButtonsBox) expandedButtonsBox.removeAttribute("style");
+
+  let darkReaderToggle = document.getElementById("darkReaderToggle");
+  if (darkReaderToggle) darkReaderToggle.removeAttribute("style");
 
   window.customElements.whenDefined("header-recipient").then(classHeaderRecipient => {
     if (classHeaderRecipient.prototype.originalUpdateRecipient) {
