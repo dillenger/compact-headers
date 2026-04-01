@@ -347,9 +347,9 @@ function install(window) {
       messageHeader.children[i].setAttribute("style", "display: none;");
       if (messageHeader.getAttribute("singleline") != "singleline") headerSubjectSecurityContainer.setAttribute("style", "height: unset; z-index: 3;");
     }
-    expandedsubjectBox.setAttribute("style", "margin-top: 1px; overflow: hidden; -webkit-line-clamp: 1; min-width: 8em; max-width: fit-content; word-break: break-all;");
+    expandedsubjectBox.setAttribute("style", "min-height: 23px; overflow: hidden; -webkit-line-clamp: 1; min-width: 8em; max-width: fit-content; word-break: break-all;");
     if ((messageHeader.getAttribute("showfullsubjectheader") == "showfullsubjectheader") && (messageHeader.getAttribute("singleline") != "singleline"))
-      expandedsubjectBox.setAttribute("style", "margin-top: 1px; overflow: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
+      expandedsubjectBox.setAttribute("style", "min-height: 23px; overflow: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
     if (messageHeader.getAttribute("singleline") == "singleline") singleLine();
     else doubleLine();
 
@@ -398,7 +398,7 @@ function install(window) {
       messageHeader.children[i].removeAttribute("style");
       headerSubjectSecurityContainer.setAttribute("style", "height: unset; z-index: 3;");
     }
-    expandedsubjectBox.setAttribute("style", "margin-top: 1px; overflow-x: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
+    expandedsubjectBox.setAttribute("style", "min-height: 23px; overflow-x: hidden; -webkit-line-clamp: 3; min-width: 8em; max-width: fit-content; word-break: normal;");
     doubleLine();
 
     expandedfromBox.setAttribute("style", "margin-block: auto; overflow: hidden; min-width: 333%; margin-inline-end: auto; padding-inline-start: 2px; z-index: 3;");
