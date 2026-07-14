@@ -1,7 +1,15 @@
 Changelog for Compact Headers
 
+5.15
+Improved From, To and Cc spacing in double line compact mode.
+
+5.14
+Fixed missing expandedButtonsBox error for Thunderbird 140.x.
+
 5.13
-Improved alignment of tags, labels and buttons for messages with long subject lines.
+Improved alignment of tags, labels and buttons.
+Fixed overflowing long sender names in single line mode.
+Set maximum version to Thunderbird 154.*.
 
 5.12
 Realigned tags, date label, crypto button and dark mode button.
