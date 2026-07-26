@@ -119,6 +119,7 @@ function install(window) {
   let expandedfromBox = document.getElementById("expandedfromBox");
   expandedfromBox.firstChild.nextSibling.style.flexWrap = "nowrap";
   expandedfromBox.firstChild.nextSibling.style.minWidth = "inherit";
+  expandedfromBox.firstChild.nextSibling.addEventListener("contextmenu", stopContext, true);
   let expandedfromLabel = document.getElementById("expandedfromLabel");
   if (expandedfromLabel) expandedfromLabel.style.width = "4em";
   if (expandedfromLabel) expandedfromLabel.style.margin = "1px -2px";
@@ -126,12 +127,17 @@ function install(window) {
   let expandedtoRow = document.getElementById("expandedtoRow");
   let expandedtoBox = document.getElementById("expandedtoBox");
   expandedtoBox.firstChild.nextSibling.style.minWidth = "inherit";
+  expandedtoBox.firstChild.nextSibling.addEventListener("contextmenu", stopContext, true);
   let expandedtoLabel = document.getElementById("expandedtoLabel");
 
   let expandedccRow = document.getElementById("expandedccRow");
   let expandedccBox = document.getElementById("expandedccBox");
   expandedccBox.firstChild.nextSibling.style.minWidth = "inherit";
+  expandedccBox.firstChild.nextSibling.addEventListener("contextmenu", stopContext, true);
   let expandedccLabel = document.getElementById("expandedccLabel");
+
+  let expandedbccBox = document.getElementById("expandedbccBox");
+  expandedbccBox.firstChild.nextSibling.addEventListener("contextmenu", stopContext, true);
 
   let expandedcontentBaseRow = document.getElementById("expandedcontent-baseRow");
   let expandedcontentBaseBox = document.getElementById("expandedcontent-baseBox");

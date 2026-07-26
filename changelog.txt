@@ -1,5 +1,9 @@
 Changelog for Compact Headers
 
+5.16
+Fixed context menus on From, To, Cc and Bcc headers (removed doubles).
+Set maximum version to Thunderbird 155.*.
+
 5.15
 Improved From, To and Cc spacing in double line compact mode.
 
